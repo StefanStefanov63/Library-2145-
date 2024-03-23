@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Library.Services</name>
+    </assembly>
+    <members>
+        <member name="M:Library.Services.Classes.AuthorServices.DeleteAuthorByName(System.String)">
+            <summary>
+            Метод за изтриване на автор
+            </summary>
+            <param name="aName">име на автор</param>
+        </member>
+        <member name="M:Library.Services.Classes.AuthorServices.GetAllAuthors">
+            <summary>
+            Метод за повикване на всички автори
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Services.Classes.AuthorServices.RegisterNewAuthor(System.String)">
+            <summary>
+            Метод за регистриране на нов автор
+            </summary>
+            <param name="aName">име на нов автор</param>
+        </member>
+        <member name="M:Library.Services.Classes.AuthorServices.UpdateAuthorName(System.String,System.String)">
+            <summary>
+            Метод за подновяване на името на автор
+            </summary>
+            <param name="aOldName">старо име</param>
+            <param name="aNewName">ново име</param>
+        </member>
+        <member name="M:Library.Services.Classes.BookServices.DeleteBookByTitle(System.String)">
+            <summary>
+            Метод за изтриване на книга по заглавие
+            </summary>
+            <param name="aTitle">заглавие на книга</param>
+        </member>
+        <member name="M:Library.Services.Classes.BookServices.GetAllBookFromAuthor(System.String)">
+            <summary>
+            Метод за повикване на всички книги на автор
+            </summary>
+            <param name="amAuthor">името на автора</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Services.Classes.BookServices.GetAllBooks">
+            <summary>
+            Метод за повикване на всички книги
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Services.Classes.BookServices.RegisterNewBook(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Метод за регистриране на нова книга
+            </summary>
+            <param name="aTitle">заглавие</param>
+            <param name="anAuthorName">автор</param>
+            <param name="aDescription">описание</param>
+            <param name="aQuantity">брой</param>
+        </member>
+        <member name="M:Library.Services.Classes.BookServices.GetBookByTitle(System.String)">
+            <summary>
+            Метод за повикване на книга по заглавие
+            </summary>
+            <param name="aTitle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Services.Classes.BookServices.UpdateBook(System.String,System.String,System.String,System.String,System.Int32,Library.Data.LibraryContext)">
+            <summary>
+            Метод за подновяване на книга
+            </summary>
+            <param name="anOldTitle">старо заглавие</param>
+            <param name="aNewTitle">ново заглавие</param>
+            <param name="aNewAuthor">нов автор</param>
+            <param name="aNewDescription">ново описание</param>
+            <param name="aNewQuantity">нов брой</param>
+            <param name="db"></param>
+        </member>
+        <member name="M:Library.Services.Classes.BookServices.UpdateBookAuthor(System.String,System.String)">
+            <summary>
+            Метод за подновяване на автора на книга
+            </summary>
+            <param name="aTitle">заглавие</param>
+            <param name="aNewAuthor">нов автор</param>
+        </member>
+        <member name="M:Library.Services.Classes.BookServices.UpdateBookDescription(System.String,System.String)">
+            <summary>
+            Метод за подновяване на описание на книга
+            </summary>
+            <param name="aTitle">заглавие</param>
+            <param name="aNewDescription">ново описание</param>
+        </member>
+        <member name="M:Library.Services.Classes.BookServices.UpdateBookQuantity(System.String,System.Int32)">
+            <summary>
+            Метод за поновяване на броя на книга
+            </summary>
+            <param name="aTitle">заглавие</param>
+            <param name="aNewQuantity">нов брой</param>
+        </member>
+        <member name="M:Library.Services.Classes.BookServices.UpdateBookTitle(System.String,System.String)">
+            <summary>
+            Метод за подновяване на заглавие на книга
+            </summary>
+            <param name="anOldTitle">старо заглавие</param>
+            <param name="aNewTitle">ново заглавие</param>
+        </member>
+        <member name="M:Library.Services.Classes.LibraryCardServices.DeleteLibraryCardByName(System.String)">
+            <summary>
+            Метод за изтриване на членска карта по име
+            </summary>
+            <param name="aName"></param>
+        </member>
+        <member name="M:Library.Services.Classes.LibraryCardServices.GetAllLibraryCards">
+            <summary>
+            Метод за повикване на всички членски карти
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Services.Classes.LibraryCardServices.RegisterNewLibraryCard(System.String)">
+            <summary>
+            Метод за регистриране на нова членска карта
+            </summary>
+            <param name="aName">име на членска карта</param>
+        </member>
+        <member name="M:Library.Services.Classes.LibraryCardServices.UpdateLibraryCardName(System.String,System.String)">
+            <summary>
+            Метод за подновяване на име на членска карта
+            </summary>
+            <param name="aOldName">старо име</param>
+            <param name="aNewName">ново име</param>
+        </member>
+        <member name="M:Library.Services.Classes.LibraryCardServices.GetLibraryCardByName(System.String)">
+            <summary>
+            Метод за повикване на  членска карта по име
+            </summary>
+            <param name="aName">име</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Services.Classes.LogServices.DeleteLogById(System.Int32)">
+            <summary>
+            Метод за изтриване на лог по id
+            </summary>
+            <param name="anId">id</param>
+        </member>
+        <member name="M:Library.Services.Classes.LogServices.GetAllLogs">
+            <summary>
+            Метод за повикване на всички логове
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Services.Classes.LogServices.GetAllLogsForBookByTitle(System.String)">
+            <summary>
+            Метод за повикване на всички логове на книга
+            </summary>
+            <param name="aTitle">име на книга</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Services.Classes.LogServices.GetAllLogsFromLibraryCardByName(System.String)">
+            <summary>
+            Метод за повикване на всички логове на членска карта по име
+            </summary>
+            <param name="aName">име</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Services.Classes.LogServices.ReturnBook(System.String,System.String)">
+            <summary>
+            Метод за връщане на книга
+            </summary>
+            <param name="aBookTitle"></param>
+            <param name="aLibraryCardName"></param>
+        </member>
+        <member name="M:Library.Services.Classes.LogServices.TakeBook(System.String,System.String)">
+            <summary>
+            Метод за взимане на книга
+            </summary>
+            <param name="aBookTitle"></param>
+            <param name="aLibraryCardName"></param>
+        </member>
+    </members>
+</doc>
