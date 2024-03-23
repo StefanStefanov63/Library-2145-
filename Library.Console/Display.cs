@@ -314,15 +314,23 @@ namespace Library.Console
 
         private void RegisterNewBook()
         {
-            Console.WriteLine("Enter Title:");
-            string aBookTitle = Console.ReadLine();
-            Console.WriteLine("Enter Author:");
-            string aBookAuthor = Console.ReadLine();
-            Console.WriteLine("Enter Description:");
-            string aBookDescription = Console.ReadLine();
-            Console.WriteLine("Enter Quantity:");
-            int aBookQuantity = int.Parse(Console.ReadLine());
-            bookService.RegisterNewBook(aBookTitle, aBookAuthor, aBookDescription, aBookQuantity);
+            try
+            {
+                Console.WriteLine("Enter Title:");
+                string aBookTitle = Console.ReadLine();
+                Console.WriteLine("Enter Author:");
+                string aBookAuthor = Console.ReadLine();
+                Console.WriteLine("Enter Description:");
+                string aBookDescription = Console.ReadLine();
+                Console.WriteLine("Enter Quantity:");
+                int aBookQuantity = int.Parse(Console.ReadLine());
+                bookService.RegisterNewBook(aBookTitle, aBookAuthor, aBookDescription, aBookQuantity);
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine("Please enter only natural numbers");
+            }
+
         }
 
         private void GetAllLogsFromLibraryCardByName()

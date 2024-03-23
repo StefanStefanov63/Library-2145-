@@ -51,7 +51,11 @@ namespace Library.Services.Classes
         public void RegisterNewLibraryCard(string aName)
         {
             var aLibraryCard = db.LibraryCards.FirstOrDefault(x => x.Name.Trim() == aName.Trim());
-            if (aLibraryCard == null)
+            if(aName=="")
+            {
+                Console.WriteLine($"Name '{aName.Trim()}' is empty, so wan't registered.");
+            }
+            else if (aLibraryCard == null)
             {
                 LibraryCard libraryCard = new LibraryCard();
                 libraryCard.Name = aName.Trim();
@@ -72,9 +76,13 @@ namespace Library.Services.Classes
                 aLibraryCard.Name = aNewName.Trim();
                 Console.WriteLine($"LibraryCard for '{aOldName.Trim()}' was successfully renamed to '{aNewName.Trim()}'.");
             }
-            else
+            else if(aLibraryCard == null) 
             {
                 Console.WriteLine($"LibraryCard for '{aOldName.Trim()}' wasn't found.");
+            }
+            else if (aNewName == "")
+            {
+                Console.WriteLine($"New Name '{aNewName.Trim()}' is empty, so wan't registered.");
             }
             db.SaveChanges();
         }

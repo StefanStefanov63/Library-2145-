@@ -75,19 +75,23 @@ namespace Library.Services.Classes
         public void RegisterNewBook(string aTitle, string anAuthorName, string aDescription, int aQuantity)
         {
             var aBook = db.Books.FirstOrDefault(x => x.Title.Trim() == aTitle.Trim());
+            
             if (aBook == null)
             {
                 Book book = new Book();
                 book.Title = aTitle.Trim();
-                book.Description = aDescription.Trim();
-                if (aQuantity > 0)
+                if (aDescription != null)
+                {
+                    book.Description = aDescription.Trim();
+                }
+                if (aQuantity >= 0)
                 { 
                     book.Quantity = aQuantity;
                 }
                 else
                 {
                     book.Quantity = 0;
-                    Console.WriteLine($"Book Quantity: {aQuantity} wasn't above 0, so it was registered as 0");
+                    Console.WriteLine($"Book Quantity: {aQuantity} is below above 0, so it was registered as 0");
                 }
                 var anAuthor = db.Authors.FirstOrDefault(x => x.Name.Trim() == anAuthorName.Trim());
                 if (anAuthor == null)
@@ -105,6 +109,14 @@ namespace Library.Services.Classes
                 }
                 db.Books.Add(book);
                 
+            }
+            else if(aTitle == "")
+            {
+                Console.WriteLine($"Title '{aTitle.Trim()}' is empty, so wan't registered.");
+            }
+            else if(anAuthorName =="")
+            {
+                Console.WriteLine($"Author Name '{anAuthorName.Trim()}' is empty, so wan't registered.");
             }
             else
             {
@@ -136,6 +148,14 @@ namespace Library.Services.Classes
             {
                 Console.WriteLine($"Book '{anOldTitle.Trim()}' wasn't found.");
             }
+            else if (aNewTitle == "")
+            {
+                Console.WriteLine($"New Title '{aNewTitle.Trim()}' is empty, so wan't registered.");
+            }
+            else if (aNewAuthor == "")
+            {
+                Console.WriteLine($"New Author Name '{aNewAuthor.Trim()}' is empty, so wan't registered.");
+            }
             else
             {
                 aBookServices.UpdateBookTitle(anOldTitle, aNewTitle);
@@ -149,6 +169,7 @@ namespace Library.Services.Classes
         public void UpdateBookAuthor(string aTitle, string aNewAuthor)
         {
             var aBook = db.Books.FirstOrDefault(x => x.Title.Trim() == aTitle.Trim());
+            
             if (aBook != null)
             {
                 var anOldAuthor = db.Authors.FirstOrDefault(x => x.Id == aBook.AuthorId);
@@ -167,9 +188,13 @@ namespace Library.Services.Classes
                     aBook.AuthorId = anNewAuthor.Id;
                 }
             }
-            else
+            else if(aBook == null)
             {
                 Console.WriteLine($"Book '{aTitle.Trim()}' wasn't found.");
+            }
+            else if (aNewAuthor == "")
+            {
+                Console.WriteLine($"New Author Name '{aNewAuthor.Trim()}' is empty, so wan't registered.");
             }
             db.SaveChanges();
         }
@@ -215,15 +240,21 @@ namespace Library.Services.Classes
         public void UpdateBookTitle(string anOldTitle, string aNewTitle)
         {
             var aBook = db.Books.FirstOrDefault(x => x.Title.Trim() == anOldTitle.Trim());
+            
             if (aBook != null)
             {
                 aBook.Title = aNewTitle.Trim();
                 Console.WriteLine($"Book '{anOldTitle.Trim()}' was successfully renamed to '{aNewTitle.Trim()}'.");
             }
-            else
+            else if(aBook == null)
             {
                 Console.WriteLine($"Book '{anOldTitle.Trim()}' wasn't found.");
             }
+            else if (aNewTitle == "")
+            {
+                Console.WriteLine($"New Title '{aNewTitle.Trim()}' is empty, so wan't registered.");
+            }
+            
             db.SaveChanges();
         }
     }

@@ -59,7 +59,11 @@ namespace Library.Services.Classes
         public void RegisterNewAuthor(string aName)
         {
             var anAuthor = db.Authors.FirstOrDefault(x => x.Name.Trim() == aName.Trim());
-            if (anAuthor == null) 
+            if(aName == "")
+            {
+                Console.WriteLine($"Name '{aName.Trim()}' is empty, so wan't registered.");
+            }
+            else if (anAuthor == null) 
             { 
                 Author author = new Author();
                 author.Name = aName.Trim();
@@ -81,9 +85,13 @@ namespace Library.Services.Classes
                 anAuthor.Name = aNewName.Trim();
                 Console.WriteLine($"Author '{aOldName.Trim()}' was successfully renamed to '{aNewName.Trim()}'.");
             }
-            else
+            else if(anAuthor == null)
             {
                 Console.WriteLine($"Author '{aOldName.Trim()}' wasn't found.");
+            }
+            else if(aNewName == "")
+            {
+                Console.WriteLine($"New Name '{aNewName.Trim()}' is empty, so wan't registered.");
             }
             db.SaveChanges();
         }
