@@ -78,7 +78,7 @@ namespace Library.Tests
         }
 
         [Test]
-        public void RegisterNewBook_WithNegativeQuantity_ShouldNotAddToDatabase()
+        public void RegisterNewBook_WithNegativeQuantity_ShouldAddToDatabaseWithQuantityZero()
         {
 
             const string title = "New Book";
@@ -90,7 +90,8 @@ namespace Library.Tests
 
 
             var books = _dbContext.Books.ToList();
-            Assert.AreEqual(2, books.Count);
+            Assert.AreEqual(3, books.Count);
+            Assert.IsTrue(_dbContext.Books.Any(b => b.Title == title&& b.Quantity ==0));
         }
         [Test]
         public void DeleteBookByTitle_WhenExistingBook_ShouldRemoveFromDatabase()
@@ -152,9 +153,9 @@ namespace Library.Tests
             _bookServices.UpdateBookAuthor(existingBookTitle, newAuthor);
 
             var updatedBook = _dbContext.Books.FirstOrDefault(b => b.Title == existingBookTitle);
-
+            var author = _dbContext.Authors.FirstOrDefault(b=> b.Name == newAuthor);
             Assert.IsNotNull(updatedBook);
-            Assert.AreEqual(newAuthor, updatedBook.Author);
+            Assert.AreEqual(author.Id, updatedBook.AuthorId);
         }
 
         [Test]
@@ -169,6 +170,7 @@ namespace Library.Tests
 
             Assert.IsNull(updatedBook);
         }
+        [Test]
         public void UpdateBookDescription_WhenExistingBook_ShouldUpdateDescription()
         {
             string existingBookTitle = "Book1";
@@ -232,10 +234,11 @@ namespace Library.Tests
             _bookServices.UpdateBook(existingBookTitle, newTitle, newAuthor, newDescription, newQuantity, _dbContext);
 
             var updatedBook = _dbContext.Books.FirstOrDefault(b => b.Title == newTitle);
-
+            var author = _dbContext.Authors.FirstOrDefault(b => b.Name == newAuthor);
+            
             Assert.IsNotNull(updatedBook);
             Assert.AreEqual(newTitle, updatedBook.Title);
-            Assert.AreEqual(newAuthor, updatedBook.Author);
+            Assert.AreEqual(author.Id, updatedBook.AuthorId);
             Assert.AreEqual(newDescription, updatedBook.Description);
             Assert.AreEqual(newQuantity, updatedBook.Quantity);
         }

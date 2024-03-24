@@ -24,6 +24,7 @@ namespace Library.Tests
 
             _dbContext = new LibraryContext(options);
             _logServices = new LogServices(_dbContext);
+            SeedTestData();
         }
 
         [Test]
