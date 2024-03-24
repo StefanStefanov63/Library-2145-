@@ -21,15 +21,19 @@ namespace Library.Services.Classes
         public void DeleteLibraryCardByName(string aName)
         {
             var aLibraryCard = db.LibraryCards.FirstOrDefault(x => x.Name.Trim() == aName.Trim());
-            if (aLibraryCard != null)
-            {
-                db.LibraryCards.Remove(aLibraryCard);
-                Console.WriteLine($"LibraryCard for '{aName.Trim()}' was successfully removed, alongside it's logs.");
-
-            }
-            else
+            var aLog= db.Logs.FirstOrDefault(x => x.LibraryCardId == aLibraryCard.Id && x.IsReturned==false);
+            if(aLibraryCard == null) 
             {
                 Console.WriteLine($"LibraryCard for '{aName.Trim()}' wasn't found.");
+            }
+            else if(aLog != null)
+            {
+                Console.WriteLine($"LibraryCard for '{aName.Trim()}' wasn't removed, becouse it has unreturned book/s.");
+            }
+            else if (aLibraryCard != null && aLog == null)
+            {
+                db.LibraryCards.Remove(aLibraryCard);
+                Console.WriteLine($"LibraryCard for '{aName.Trim()}' didin't have unreturned book/s, so was successfully removed, alongside it's logs.");
             }
             db.SaveChanges();
         }

@@ -104,9 +104,9 @@ namespace Library.Services.Classes
                 }
                 else
                 {
-                    Console.WriteLine($"Book '{aTitle.Trim()}' was successfully registered.");
                     book.AuthorId = anAuthor.Id;
                 }
+                Console.WriteLine($"Book '{aTitle.Trim()}' was successfully registered.");
                 db.Books.Add(book);
                 
             }
