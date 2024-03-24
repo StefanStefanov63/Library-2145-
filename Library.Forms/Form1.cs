@@ -702,19 +702,22 @@ namespace Library.Forms
         {
             string aName = textBox1.Text;
             var aLibraryCard = db.LibraryCards.FirstOrDefault(x => x.Name.Trim() == aName.Trim());
-            var aLog = db.Logs.FirstOrDefault(x => x.LibraryCardId == aLibraryCard.Id && x.IsReturned == false);
             if (aLibraryCard == null)
             {
                 labelCommands.Text = $"LibraryCard for '{aName.Trim()}' wasn't found.";
             }
-            else if (aLog != null)
+            else
             {
-                labelCommands.Text = $"LibraryCard for '{aName.Trim()}' wasn't removed, becouse it has unreturned book/s.";
-            }
-            else if (aLibraryCard != null)
-            {
-                libraryCardService.DeleteLibraryCardByName(aName);
-                labelCommands.Text = $"LibraryCard for '{aName.Trim()}' didin't have unreturned book/s, was successfully removed, alongside it's logs.";
+                var aLog = db.Logs.FirstOrDefault(x => x.LibraryCardId == aLibraryCard.Id && x.IsReturned == false);
+                if (aLog != null)
+                {
+                    labelCommands.Text = $"LibraryCard for '{aName.Trim()}' wasn't removed, becouse it has unreturned book/s.";
+                }
+                else if (aLibraryCard != null)
+                {
+                    libraryCardService.DeleteLibraryCardByName(aName);
+                    labelCommands.Text = $"LibraryCard for '{aName.Trim()}' didin't have unreturned book/s, was successfully removed, alongside it's logs.";
+                }
             }
             
         }
